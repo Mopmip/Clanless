@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Nunito", system-ui, sans-serif;
+  color: #2c2418;
+  background: #1b1712;
+}
+
+button {
+  font-family: inherit;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
