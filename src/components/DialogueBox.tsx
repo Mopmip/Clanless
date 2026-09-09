@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { SceneLine } from "../data/script";
 import { PawIcon } from "./PawIcon";
+import { CatPortrait } from "./CatPortrait";
+import { CATS } from "../data/cats";
 
 interface Props {
   lines: SceneLine[];
@@ -23,12 +25,17 @@ export function DialogueBox({ lines, onDone, doneLabel = "Continue" }: Props) {
 
   if (!line) return null;
 
+  const speakerCat = line.speaker ? CATS.find((c) => c.name === line.speaker) : undefined;
+
   return (
     <div className="dialogue-box" onClick={advance} role="button" tabIndex={0}>
-      {line.speaker && <div className="dialogue-speaker">{line.speaker}</div>}
-      <div className="dialogue-text">{line.text}</div>
-      <div className="dialogue-continue">
-        {isLast ? doneLabel : "Continue"} <PawIcon />
+      {speakerCat && <CatPortrait key={speakerCat.id} cat={speakerCat} variant="zoom" />}
+      <div className="dialogue-content">
+        {line.speaker && <div className="dialogue-speaker">{line.speaker}</div>}
+        <div className="dialogue-text">{line.text}</div>
+        <div className="dialogue-continue">
+          {isLast ? doneLabel : "Continue"} <PawIcon />
+        </div>
       </div>
     </div>
   );
